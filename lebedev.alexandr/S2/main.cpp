@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
         throw std::logic_error("Cannot open file!\n");
       }
     }
-    std::stack< std::string > res;
+    lebedev::Stack< std::string > res;
     if (in.is_open())
     {
       res = lebedev::inputExpressions(in);
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     {
       res = lebedev::inputExpressions(std::cin);
     }
-    if (res.empty())
+    if (res.isEmpty())
     {
       std::cout << '\n';
       return 0;
@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     {
       std::cout << res.top();
       res.pop();
-      while (!res.empty())
+      while (!res.isEmpty())
       {
         std::cout << ' ' << res.top();
         res.pop();

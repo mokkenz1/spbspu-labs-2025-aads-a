@@ -22,10 +22,10 @@ int getPriority(char op)
   }
 }
 
-std::queue< std::string > lebedev::convertInfToPost(const std::string& expr)
+lebedev::Queue< std::string > lebedev::convertInfToPost(const std::string& expr)
 {
-  std::stack< char > ops;
-  std::queue< std::string > output;
+  lebedev::Stack< char > ops;
+  lebedev::Queue< std::string > output;
   std::string temp;
 
   for (size_t i = 0; i < expr.size(); i++)
@@ -56,12 +56,12 @@ std::queue< std::string > lebedev::convertInfToPost(const std::string& expr)
 
     if (c == ')')
     {
-      while (!ops.empty() && ops.top() != '(')
+      while (!ops.isEmpty() && ops.top() != '(')
       {
         output.push(std::string(1, ops.top()));
         ops.pop();
       }
-      if (ops.empty())
+      if (ops.isEmpty())
       {
         throw std::runtime_error("Mismatched parentheses!\n");
       }
@@ -71,7 +71,7 @@ std::queue< std::string > lebedev::convertInfToPost(const std::string& expr)
 
     if (isOperator(c))
     {
-      while (!ops.empty() && ops.top() != '(' && getPriority(ops.top()) >= getPriority(c))
+      while (!ops.isEmpty() && ops.top() != '(' && getPriority(ops.top()) >= getPriority(c))
       {
         output.push(std::string(1, ops.top()));
         ops.pop();
@@ -87,7 +87,7 @@ std::queue< std::string > lebedev::convertInfToPost(const std::string& expr)
     throw std::runtime_error("Invalid number!\n");
   }
 
-  while (!ops.empty())
+  while (!ops.isEmpty())
   {
     if (ops.top() == '(')
     {
@@ -99,12 +99,12 @@ std::queue< std::string > lebedev::convertInfToPost(const std::string& expr)
   return output;
 }
 
-long long lebedev::calculatePost(std::queue< std::string >& post)
+long long lebedev::calculatePost(lebedev::Queue< std::string >& post)
 {
-  std::stack< long long > ops;
-  while (!post.empty())
+  lebedev::Stack< long long > ops;
+  while (!post.isEmpty())
   {
-    std::string token = post.front();
+    std::string token = post.top();
     post.pop();
 
     if (isdigit(token[0]))
@@ -135,9 +135,9 @@ long long lebedev::calculatePost(std::queue< std::string >& post)
   return ops.top();
 }
 
-std::stack< std::string > lebedev::inputExpressions(std::istream& input)
+lebedev::Stack< std::string > lebedev::inputExpressions(std::istream& input)
 {
-  std::stack< std::string > res;
+  lebedev::Stack< std::string > res;
   std::string line;
 
   while (input)
