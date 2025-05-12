@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
     }
     if (res.empty())
     {
-      return 0;
+      return 1;
     }
     std::cout << res.top();
     res.pop();
