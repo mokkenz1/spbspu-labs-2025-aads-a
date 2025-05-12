@@ -140,8 +140,9 @@ std::stack< std::string > lebedev::inputExpressions(std::istream& input)
   std::stack< std::string > res;
   std::string line;
 
-  while (std::getline(input, line))
+  while (input)
   {
+    std::getline(input, line);
     if (line.empty())
     {
       continue;
