@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
     res.pop();
     while (!res.empty())
     {
-      std::cout << res.top();
+      std::cout << ' ' << res.top();
       res.pop();
     }
     std::cout << '\n';
