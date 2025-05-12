@@ -29,6 +29,11 @@ int main(int argc, char* argv[])
     {
       res = lebedev::inputExpressions(std::cin);
     }
+    if (res.empty())
+    {
+      std::cerr << "Empty input\n";
+      return 1;
+    }
     std::cout << res.top();
     res.pop();
     while (!res.empty())
