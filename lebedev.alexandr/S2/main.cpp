@@ -31,16 +31,20 @@ int main(int argc, char* argv[])
     }
     if (res.empty())
     {
-      return 1;
+      std::cout << '\n';
+      return 0;
     }
-    std::cout << res.top();
-    res.pop();
-    while (!res.empty())
+    else
     {
-      std::cout << ' ' << res.top();
+      std::cout << res.top();
       res.pop();
+      while (!res.empty())
+      {
+        std::cout << ' ' << res.top();
+        res.pop();
+      }
+      std::cout << '\n';
     }
-    std::cout << '\n';
     return 0;
   }
   catch (const std::exception& e)
