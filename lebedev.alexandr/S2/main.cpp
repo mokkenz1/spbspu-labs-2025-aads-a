@@ -31,8 +31,7 @@ int main(int argc, char* argv[])
     }
     if (res.empty())
     {
-      std::cerr << "Empty input\n";
-      return 1;
+      return 0;
     }
     std::cout << res.top();
     res.pop();
